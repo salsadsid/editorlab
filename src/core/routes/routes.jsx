@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import Home from "../pages/Home";
-import Tiptap from "../pages/editors/tiptap";
+import Home from "../../pages/Home";
+import Tiptap from "../../pages/editors/tiptap";
 
 export const router = createBrowserRouter([
   {

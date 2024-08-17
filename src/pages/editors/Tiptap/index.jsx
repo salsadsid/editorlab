@@ -34,6 +34,7 @@ import {
   MdOutlineLinkOff,
 } from "react-icons/md";
 import { RiParagraph } from "react-icons/ri";
+import { cn } from "../../../core/utils/cn";
 import "./styles/style.scss";
 
 const MenuBar = ({ editor }) => {
@@ -73,23 +74,19 @@ const MenuBar = ({ editor }) => {
       name: "undo",
       disabled: !editor.can().chain().focus().undo().run(),
       onclick: () => editor.chain().focus().undo().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md`,
       icon: <LuUndo size="1.3rem" className="w-12" />,
     },
     {
       name: "redo",
       disabled: !editor.can().chain().focus().redo().run(),
       onclick: () => editor.chain().focus().redo().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md`,
       icon: <LuRedo size="1.3rem" className="w-12" />,
     },
     {
       name: "bold",
       disabled: !editor.can().chain().focus().toggleBold().run(),
       onclick: () => editor.chain().focus().toggleBold().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("bold") ? "bg-blue-200 " : ""
-      }`,
+      className: `${editor.isActive("bold") ? "bg-gray-200 " : ""}`,
       icon: <BiBold size="1.3rem" className="w-12" />,
     },
     {
@@ -185,7 +182,7 @@ const MenuBar = ({ editor }) => {
     },
   ];
   return (
-    <div className="sticky top-0 z-10 flex flex-wrap gap-2 rounded-t-md bg-slate-100 p-2">
+    <div className=" flex flex-wrap  items-center gap-2 rounded-t-md bg-slate-100 p-2">
       {menuButtons.map((btn, i) => (
         <Button
           key={i}
@@ -194,7 +191,7 @@ const MenuBar = ({ editor }) => {
             btn.onclick();
           }}
           disabled={btn.disabled ? btn.disabled : ""}
-          className={btn.class}
+          className={cn("px-0", btn.className)}
           variant="outlined"
         >
           {btn.icon}
@@ -266,9 +263,11 @@ export default function Tiptap() {
   );
 
   return (
-    <div className="relative rounded-md border-2 border-blue-200">
+    <div className="mx-auto max-w-5xl relative w-full rounded-md border-2 border-gray-600">
       <MenuBar editor={editor} />
-      <EditorContent className={`w-full overflow-auto p-3`} editor={editor} />
+
+      <EditorContent className="min-h-[50vh] p-3" editor={editor} />
+
       {/* {showWordCount && (
         <div className="rounded-b-md bg-slate-100 pl-2 font-semibold">
           {editor?.storage?.characterCount?.words()} Words
