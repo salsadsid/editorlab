@@ -68,7 +68,7 @@ const MenuBar = ({ editor }) => {
   if (!editor) {
     return null;
   }
-
+  console.log(editor.isActive("italic"));
   const menuButtons = [
     {
       name: "undo",
@@ -93,90 +93,76 @@ const MenuBar = ({ editor }) => {
       name: "italic",
       disabled: !editor.can().chain().focus().toggleItalic().run(),
       onclick: () => editor.chain().focus().toggleItalic().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("italic") ? "bg-blue-200 " : ""
-      }`,
+      className: `${editor.isActive("italic") ? "bg-gray-200 " : ""}`,
       icon: <BiItalic size="1.3rem" className="w-12" />,
     },
     {
       name: "strike",
       disabled: !editor.can().chain().focus().toggleStrike().run(),
       onclick: () => editor.chain().focus().toggleStrike().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("strike") ? "bg-blue-200 " : ""
-      }`,
+      className: `${editor.isActive("strike") ? "bg-gray-200 " : ""}`,
       icon: <BiStrikethrough size="1.3rem" className="w-12" />,
     },
     {
       name: "code",
       disabled: !editor.can().chain().focus().toggleCode().run(),
       onclick: () => editor.chain().focus().toggleCode().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("code") ? "bg-blue-200 " : ""
-      }`,
+      className: `${editor.isActive("code") ? "bg-gray-200 " : ""}`,
       icon: <BiCode size="1.3rem" className="w-12" />,
     },
     {
       name: "paragraph",
       disabled: !editor.can().chain().focus().toggleCode().run(),
       onclick: () => editor.chain().focus().setParagraph().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("paragraph") ? "bg-blue-200 " : ""
-      }`,
+      className: `${editor.isActive("paragraph") ? "bg-gray-200 " : ""}`,
       icon: <RiParagraph size="1.3rem" className="w-12" />,
     },
     {
       name: "heading",
       onclick: () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("heading", { level: 1 }) ? "bg-blue-200" : ""
+      className: `${
+        editor.isActive("heading", { level: 1 }) ? "bg-gray-200" : ""
       }`,
       icon: <LuHeading1 size="1.3rem" className="w-12" />,
     },
     {
       name: "heading",
       onclick: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-      class: ` ${
-        editor.isActive("heading", { level: 2 }) ? "bg-blue-200" : ""
+      className: ` ${
+        editor.isActive("heading", { level: 2 }) ? "bg-gray-200" : ""
       }`,
       icon: <LuHeading2 size="1.3rem" className="w-12" />,
     },
     {
       name: "heading",
       onclick: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("heading", { level: 3 }) ? "bg-blue-200" : ""
+      className: `${
+        editor.isActive("heading", { level: 3 }) ? "bg-gray-200" : ""
       }`,
       icon: <LuHeading3 size="1.3rem" className="w-12" />,
     },
     {
       name: "bullet-list",
       onclick: () => editor.chain().focus().toggleBulletList().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("bulletList") ? "bg-blue-200 " : ""
-      }`,
+      className: `${editor.isActive("bulletList") ? "bg-gray-200 " : ""}`,
       icon: <MdFormatListBulleted size="1.3rem" className="w-12" />,
     },
     {
       name: "ordered-list",
       onclick: () => editor.chain().focus().toggleOrderedList().run(),
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("orderedList") ? "bg-blue-200 " : ""
-      }`,
+      className: `${editor.isActive("orderedList") ? "bg-gray-200 " : ""}`,
       icon: <MdFormatListNumbered size="1.3rem" className="w-12" />,
     },
     {
       name: "link",
       onclick: setLink,
-      class: `flex justify-center items-center w-10 h-10 border border-blue-300 rounded-md ${
-        editor.isActive("link") ? "bg-blue-200 " : ""
-      }`,
+      className: `${editor.isActive("link") ? "bg-gray-200 " : ""}`,
       icon: <MdOutlineLink size="1.3rem" className="w-12" />,
     },
     {
       name: "link",
       onclick: () => editor.chain().focus().unsetLink().run(),
-      class: ` ${editor.isActive("link") ? "bg-blue-200 " : ""}`,
+      className: ` ${editor.isActive("link") ? "bg-gray-200 " : ""}`,
       disabled: !editor.isActive("link"),
       icon: <MdOutlineLinkOff size="1.3rem" className="w-12" />,
     },
@@ -263,16 +249,19 @@ export default function Tiptap() {
   );
 
   return (
-    <div className="mx-auto max-w-5xl relative w-full rounded-md border-2 border-gray-600">
-      <MenuBar editor={editor} />
+    <div>
+      <h3 className="text-3xl font-semibold text-center my-4">Tiptap Editor</h3>
+      <div className="mx-auto max-w-5xl relative w-full rounded-md border-2 border-gray-600">
+        <MenuBar editor={editor} />
 
-      <EditorContent className="min-h-[50vh] p-3" editor={editor} />
+        <EditorContent className="min-h-[50vh] p-3" editor={editor} />
 
-      {/* {showWordCount && (
+        {/* {showWordCount && (
         <div className="rounded-b-md bg-slate-100 pl-2 font-semibold">
           {editor?.storage?.characterCount?.words()} Words
         </div>
       )} */}
+      </div>
     </div>
   );
 }
