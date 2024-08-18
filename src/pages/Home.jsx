@@ -24,6 +24,14 @@ const Home = () => {
             React Quill <BiRightArrow className="h-4 w-4" />
           </Link>
         </li>
+        <li>
+          <Link
+            className="flex justify-center  items-center gap-2 hover:text-gray-700 transition-all duration-200"
+            to={`/editor/lexical`}
+          >
+            Lexical <BiRightArrow className="h-4 w-4" />
+          </Link>
+        </li>
       </ul>
     </nav>
   );

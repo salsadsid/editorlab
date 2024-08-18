@@ -1,6 +1,7 @@
 import { BiLeftArrow } from "react-icons/bi";
 import { createBrowserRouter, Link, Outlet } from "react-router-dom";
 import Home from "../../pages/Home";
+import LexicalEditor from "../../pages/editors/Lexical";
 import ReactQuillEditor from "../../pages/editors/ReactQuill";
 import Tiptap from "../../pages/editors/tiptap";
 
@@ -26,11 +27,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "tiptap",
-        element: <Tiptap className="h-4 w-4" />,
+        element: <Tiptap />,
       },
       {
         path: "react-quill",
         element: <ReactQuillEditor />,
+      },
+      {
+        path: "lexical",
+        element: <LexicalEditor />,
       },
     ],
   },
