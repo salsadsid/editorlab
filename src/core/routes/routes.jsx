@@ -2,6 +2,7 @@ import { BiLeftArrow } from "react-icons/bi";
 import { createBrowserRouter, Link, Outlet } from "react-router-dom";
 import Home from "../../pages/Home";
 import LexicalEditor from "../../pages/editors/Lexical";
+import ReactMarkdown from "../../pages/editors/ReactMarkdown";
 import ReactQuillEditor from "../../pages/editors/ReactQuill";
 import Tiptap from "../../pages/editors/tiptap";
 
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "lexical",
         element: <LexicalEditor />,
+      },
+      {
+        path: "react-markdown",
+        element: <ReactMarkdown />,
       },
     ],
   },
