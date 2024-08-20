@@ -37,7 +37,11 @@ const Home = () => {
             className="flex justify-center  items-center gap-2 hover:text-gray-700 transition-all duration-200"
             to={`/editor/react-markdown`}
           >
-            React Markdown <BiRightArrow className="h-4 w-4" />
+            React Markdown{" "}
+            <button className="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-purple-600 text-white py-1.5 px-3 rounded-full text-xs shadow-lg transform transition-all duration-500 ease-in-out  hover:brightness-110 hover:animate-pulse active:animate-bounce">
+              Gemini AI
+            </button>{" "}
+            <BiRightArrow className="h-4 w-4" />
           </Link>
         </li>
       </ul>
