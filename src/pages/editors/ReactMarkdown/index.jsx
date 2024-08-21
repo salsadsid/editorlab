@@ -79,14 +79,17 @@ const ReactMarkdown = () => {
     if (!value.length) return;
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/api/prompts", {
-        method: "POST",
-        headers: {
-          accept: "*/*",
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ prompt: value }),
-      });
+      const res = await fetch(
+        "https://gemini-nodejs.onrender.com/api/prompts",
+        {
+          method: "POST",
+          headers: {
+            accept: "*/*",
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ prompt: value }),
+        }
+      );
       const data = await res.json();
       setMarkdown(data.response);
     } catch (error) {
